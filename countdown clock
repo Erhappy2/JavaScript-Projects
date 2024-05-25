@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+  <sytle>
+  *{
+    padding: 0;
+    margin: 0;
+    color: beige;
+    font-family: 'Poppins',sans-serif;
+}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+.main-box{
+    background-color: rgb(61, 61, 255);
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.enddate{
+    text-align: center;
+}
+.main-font-haeding {
+    text-align: center;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    font-size: 50px;
+}
+.main-container {
+    display: flex;
+    gap: 50px;
+    font-size: 25px;
+    margin-top: 50px;
+}
+.input-value {
+    text-align: center;
+}
+label{
+    margin-bottom: 30px;
+}
+
+input {
+    height: 50px;
+    width: 200px;
+    margin-top: 16px;
+    outline: none;
+    border: none;
+    color: black;
+    font-size: 30px;
+    font-weight: 400;
+    font-family: 'Poppins', sans-serif;
+    padding: 20px;
+    text-align: center;
+}
+  </sytle>
+</head>
+<body>
+    <div class="main-box">
+        <div class="overlay">
+            <h2 class="main-font-haeding">We are coming soon</h2>
+            <h2 class="enddate" id="enddate"></h2>
+            <div class="main-container">
+                <div class="input-value">
+                    <label for="">Day</label>
+                    <br>
+                    <input type="text" readonly value="0">
+                </div>
+                <div class="input-value">
+                    <label for="">Hours</label>
+                    <br>
+                    <input type="text" readonly value="0">
+                </div>
+                <div class="input-value">
+                    <label for="">Minutes</label>
+                    <br>
+                    <input type="text" readonly value="0">
+                </div>
+                <div class="input-value">
+                    <label for="">Sec</label>
+                    <br>
+                    <input type="text" readonly value="0">
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="index.js">
+  
+const enddate= "28 May 2025 10:00 PM";
+document.getElementById("enddate").innerText = enddate;
+const inputs= document.querySelectorAll("input");
+
+function clock(){
+    const end = new Date(enddate);
+    const now = new Date();
+    const diff = (end-now)/1000;
+    inputs[0].value = Math.floor(diff / 3600 / 24);
+    inputs[1].value = Math.floor(diff / 3600) % 24;
+    inputs[2].value = Math.floor(diff / 60) % 60;
+    inputs[3].value = Math.floor(diff) % 60;
+    // convert into days 
+}
+clock();
+
+setInterval(
+    ()=>{
+        clock();
+    },
+    1000
+);
+  </script>
+</body>
+</html>
